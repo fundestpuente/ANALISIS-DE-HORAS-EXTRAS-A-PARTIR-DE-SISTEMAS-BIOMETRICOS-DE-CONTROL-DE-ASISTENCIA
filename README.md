@@ -33,7 +33,7 @@ Su objetivo principal es generar reportes precisos y rápidos que garanticen pag
 
 ---
 
-## 📂 Estructura del Código (sugerida)
+## 📂 Estructura del Código
 ```
 ANALISIS-DE-HORAS-EXTRAS-A-PARTIR-DE-SISTEMAS-BIOMETRICOS-DE-CONTROL-DE-ASISTENCIA/
 │
@@ -51,3 +51,4 @@ ANALISIS-DE-HORAS-EXTRAS-A-PARTIR-DE-SISTEMAS-BIOMETRICOS-DE-CONTROL-DE-ASISTENC
 - **Lenguaje:** Python 3.9
 - **Librerías principales:** `pandas, datetime, numpy, matplotlib `
 - **Otras herramientas:** ` GitHub Actions (CI)` 
+
