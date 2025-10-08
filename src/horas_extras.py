@@ -47,8 +47,32 @@ def horas_extras(totDATA, mes=None, feriados_csv=None):
         date_object = datetime.strptime(date_string, "%d/%m/%Y")
         saturdays.append(i if date_object.weekday() == 5 else 0)
 
-    
+    #Añadir columnas al dataframe
+    totDATA["Sabado"] = saturdays
+    totDATA["Domingo/Feriado"] = sunday_holy
 
-    
-                
-    return None
+    #Calculo de horas extras totales por empleado
+    min50 = []
+    min100 = []
+    for i in range(len(totDATA["Fecha"])):
+
+        #Dia normal de lunes a viernes
+        if (totDATA.loc[i, "Sabado"]== 0 and (totDATA.loc[i, "Domingo/Feriado"])==0):
+            extra = totDATA.loc[i, "Minutos totales por dia"]
+            min50.append(extra)
+            min100.append(int(0))
+        
+        #Sábado
+        elif totDATA.loc[i, "Sabado"]==1:
+            extra = totDATA.loc[i, "Minutos totales por dia"]
+            min50.append(extra)
+            min100.append(int(0))
+
+        #Dia especial (Domingo o Feriado)
+        elif totDATA.loc[i, "Domingo/Feriado"]:
+            extra = totDATA.loc[i, "Minutos totales por dia"]
+            min50.append(extra)
+            min100.append(int(0))
+
+    totDATA["Minutos extra 50%"] = min50
+    totDATA["Minutos extra 100%"] = min100
