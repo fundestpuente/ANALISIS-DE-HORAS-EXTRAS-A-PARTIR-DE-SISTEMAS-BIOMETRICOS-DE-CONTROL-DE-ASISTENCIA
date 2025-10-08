@@ -21,8 +21,9 @@ def cargar_datos(path):
       data = pd.read_csv(path, engine=",")
 
     print("Archivo cargado exitosamente!")
+	return data
   except:
-    print("No se pudo acceder al archivo. Verefique que el archivo sea del tipo .csv  o  excel y verifique se que encuentre en la dirección correcta")
+    print("No se pudo acceder al archivo. Verifique que el archivo sea del tipo .csv  o  excel y verifique se que encuentre en la dirección correcta")
 		return None
 
 def procesamiento(df, col_name = None):
@@ -50,7 +51,7 @@ def procesamiento(df, col_name = None):
 		min2 = int(m)
 		min = min1 + min2
 		Diff_min.append(min)
-  df["Diferencia en minutos"] = Diff_min
+  	df["Diferencia en minutos"] = Diff_min
 
 	#Tabla de tiempo trabajado por empleado por día
 	tiemposDia = []
