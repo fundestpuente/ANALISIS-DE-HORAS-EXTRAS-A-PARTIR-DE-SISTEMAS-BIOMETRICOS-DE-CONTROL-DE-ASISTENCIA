@@ -1,4 +1,5 @@
 import pandas as pd
+from datetime import datetime
 import os
 from IPython.display import display
 
@@ -25,6 +26,8 @@ def generar_reporte(totDATA, file_name = "reporte_horas_extras.csv"):
     Output:
         None: Guarda el reporte en un archivo CSV.
     """
+    #Sumar minutos 50% y 100% por separado
+    #Contar dias asistidos por trabajador
     listado = totDATA["Nombre"].unique()
     tot50 = [0 for k in range(len(listado))]
     tot100 = [0 for k in range(len(listado))]
@@ -36,6 +39,7 @@ def generar_reporte(totDATA, file_name = "reporte_horas_extras.csv"):
                 tot100[j] += totDATA.loc[i, "Minutos extra 100%"]
                 dias[j] +=1
     reporte = pd.DataFrame({"Nombre": listado, "Total minutos extra 50%": tot50, "Total minutos extra 100%": tot100})
+    #display(reporte)
 
     #Tranformar a horas (decimal format) y añadir días asistidos
     hor50 = []
@@ -48,7 +52,7 @@ def generar_reporte(totDATA, file_name = "reporte_horas_extras.csv"):
     reporte_final = pd.DataFrame({"Nombre": listado, "Total horas extras 50%": hor50, "Total horas extras 100%": hor100, "Dias asistidos": dias})
     reporte_final.sort_values(by='Total horas extras 50%')
 
-    # Crear un directorio en donde se guardará el reporte
+    # Create un directorio en donde se guardará el reporte
     dir_output = "output_data"
     if os.path.isdir(dir_output):
         print(f"Directorio '{dir_output}' ya existe.")

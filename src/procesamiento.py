@@ -1,4 +1,4 @@
-import pandas as pd
+import pandas as pd 
 from IPython.display import display
 
 def cargar_datos(path):
@@ -25,24 +25,25 @@ def cargar_datos(path):
     except:
         print("No se pudo acceder al archivo. Verificar que el archivo sea de tipo .csv, y que el archivo se encuetra en la dirección proporcionada.")
         return None
-
+    
 def procesamiento(df, col_name = None):
-	"""
-	Función para procesar los datos de tiempo trabajado.
-	Input:
-		df (DataFrame): DataFrame con los datos originales.
-	Output:
-		totDATA (DataFrame): DataFrame con el tiempo total trabajando por empleado y por día
-	"""
+    """"
+    Función para procesar los datos de tiempo trabajado.
+    Input:
+        df (DataFrame): DataFrame con los datos originales.
+        col_name (dict, optional): Diccionario para renombrar columnas. Si no se proporciona, se usarán nombres por defecto.
+    Output:
+        totDATA (DataFrame): DataFrame con el tiempo total trabajado por empleado por día.
+    """
 
-	# Renombremos las columnas
-	if col_name is None:
-		col_name = {"TiemInicio": "Inicio", "TiemFinal": "Final", "Fecha": "Diferencia", "????": "Date"}
+    # Rename columns
+    if col_name is None:
+        col_name = {'TiemInicio': 'Inicio', 'TiemFinal': 'Final', 'Fecha': 'Diferencia', '????': 'Date'}
 
-	df.rename(columns=col_name, inplace=True)
-	print("Columnas renombradas exitosamente")
+    df.rename(columns=col_name, inplace=True)
+    print("Columnas renombradas exitosamente.")
 
-	# Trnansformamos el tiempo en minutos
+    # Transform the time in minutes
 
 	Diff_min = []
 	for i in df["Diferencia"]:
@@ -53,22 +54,24 @@ def procesamiento(df, col_name = None):
 		Diff_min.append(min)
 	df["Diferencia en minutos"] = Diff_min
 
-	#Tabla de tiempo trabajado por empleado por día
-	tiemposDia = []
-	personas = []
-	dias_trabajados = []
+    #Tabla de  tiempo trabajado por empleado por día
+    tiemposDia = []
+    personas = []
+    dias_trabajados = []
 
-	i=0
-	while i<len(df["Nombre"]):
-		cont=0
-		tiempo_dia = df.loc[i, "Diferencia en minutos"]
-		personas.append(df.loc[i, "Nombre"])
-		dias_trabajados.append(df.loc[i, "Date"])
-		while ((i+cont+1)<len(df)) and (df.loc[i, "Date"] == df.loc[i+cont+1, "Date"]) and (df.loc[i, "Nombre"] == df.loc[i+cont+1, "Nombre"]):
-			tiempo_dia += df.loc[i+cont+1, "Difetencia en minutos"]
-			cont += 1
-		tiemposDia.append(tiempo_dia)
-		i += cont+1
-	totData = pd.DataFrame({"Nombre": personas, "Minutos totales por dia": tiemposDia, "Fecha": dias_trabajados})
+    i=0
 
-	return totData
+    while i < len(df["Nombre"]):
+        cont=0
+        tiempo_dia = df.loc[i, "Diferencia en minutos"]
+        personas.append(df.loc[i, "Nombre"])
+        dias_trabajados.append(df.loc[i, "Date"])
+        while ((i+cont+1) < len(df)) and (df.loc[i, "Date"] == df.loc[i+cont+1, "Date"]) and (df.loc[i, "Nombre"] == df.loc[i+cont+1, "Nombre"]):
+            tiempo_dia += df.loc[i+cont+1, "Diferencia en minutos"]
+            cont += 1
+        tiemposDia.append(tiempo_dia)
+        i += cont+1
+
+    totDATA = pd.DataFrame({"Nombre": personas, "Minutos totales por dia": tiemposDia, "Fecha": dias_trabajados})
+
+    return totDATA
