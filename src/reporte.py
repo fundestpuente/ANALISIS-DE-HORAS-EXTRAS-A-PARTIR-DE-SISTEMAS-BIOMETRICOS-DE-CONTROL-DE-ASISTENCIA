@@ -31,7 +31,7 @@ def generar_reporte(totDATA, file_name = "reporte_horas_extras.csv"):
     dias = [0 for k in range(len(listado))]
     for i in range(len(totDATA["Nombre"])):
         for j in range(len(listado)):
-            if totDATA.loc[i, "Nombre"] == listado[j]
+            if totDATA.loc[i, "Nombre"] == listado[j]:
                 tot50[j] += totDATA.loc[i, "Minutos extra 50%"]
                 tot100[j] += totDATA.loc[i, "Minutos extra 100%"]
                 dias[j] +=1

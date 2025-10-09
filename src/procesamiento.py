@@ -2,29 +2,29 @@ import pandas as pd
 from IPython.display import display
 
 def cargar_datos(path):
-  """
-  Función para cargar datos desde un archivo CSV o Excel.imp
-  Input:
-    path (str): Ruta del archivo a cargar
-  Output:
-    data (DataFrame): Datos cargados en un DataFrame de pandas.
-  """
-  try:
-    # Tomar el tipo de archivo
-    tipo_archivo = path.split(".")[-1]
-    print(f"Cargando archivo de tipo: .{tipo_archivo}"
+    """
+    Función para cargar datos desde un archivo CSV o Excel.imp
+    Input:
+        path (str): Ruta del archivo a cargar.
+    Output:
+        data (DataFrame): Datos cargados en un DataFrame de pandas.
+    """
+    try:
+        # Tomar el tipo de archivo
+        tipo_archivo = path.split(".")[-1]
+        print(f"Cargando archivo de tipo: .{tipo_archivo}")
 
-    #Cargar el archivo según su tipo 
-    if tipo_archivo == "xls" or tipo_archivo == "xlsx":
-      data = pd.read_excel(path, engine="openpyxl")
-    else:
-      data = pd.read_csv(path, engine=",")
+        # Cargar el archivo según su tipo
+        if tipo_archivo == "xls" or tipo_archivo == "xlsx":
+            data = pd.read_excel(path, engine='openpyxl')
+        else:
+            data = pd.read_csv(path, delimiter=",")
 
-    print("Archivo cargado exitosamente!")
-	return data
-  except:
-    print("No se pudo acceder al archivo. Verifique que el archivo sea del tipo .csv  o  excel y verifique se que encuentre en la dirección correcta")
-		return None
+        print("Archivo cargado exitosamente!")
+        return data
+    except:
+        print("No se pudo acceder al archivo. Verificar que el archivo sea de tipo .csv, y que el archivo se encuetra en la dirección proporcionada.")
+        return None
 
 def procesamiento(df, col_name = None):
 	"""
@@ -51,7 +51,7 @@ def procesamiento(df, col_name = None):
 		min2 = int(m)
 		min = min1 + min2
 		Diff_min.append(min)
-  	df["Diferencia en minutos"] = Diff_min
+	df["Diferencia en minutos"] = Diff_min
 
 	#Tabla de tiempo trabajado por empleado por día
 	tiemposDia = []
