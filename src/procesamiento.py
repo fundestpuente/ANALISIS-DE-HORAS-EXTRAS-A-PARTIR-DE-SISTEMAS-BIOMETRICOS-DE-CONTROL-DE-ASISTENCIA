@@ -45,14 +45,14 @@ def procesamiento(df, col_name = None):
 
     # Transform the time in minutes
 
-	Diff_min = []
-	for i in df["Diferencia"]:
-		(h,m) = i.split(":")
-		min1 = int(h)*60
-		min2 = int(m)
-		min = min1 + min2
-		Diff_min.append(min)
-	df["Diferencia en minutos"] = Diff_min
+    Diff_min = []
+    for i in df["Diferencia"]:
+        (h, m) = i.split(':')
+        min1 = int(h) * 60
+        min2 = int(m)
+        min = min1 + min2
+        Diff_min.append(min)
+    df["Diferencia en minutos"] = Diff_min
 
     #Tabla de  tiempo trabajado por empleado por día
     tiemposDia = []
