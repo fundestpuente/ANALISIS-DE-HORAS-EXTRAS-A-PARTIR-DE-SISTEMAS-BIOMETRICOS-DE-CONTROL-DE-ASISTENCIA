@@ -30,18 +30,31 @@ Su objetivo principal es generar reportes precisos y rápidos que garanticen pag
    git clone <https://github.com/fundestpuente/ANALISIS-DE-HORAS-EXTRAS-A-PARTIR-DE-SISTEMAS-BIOMETRICOS-DE-CONTROL-DE-ASISTENCIA.git>
    cd <ruta/al/proyecto>   # ej: cd ecuador04/proyecto
    ```
-
+2. Abrir ```análisis.ipynb```, aquí se ejemplifica el uso del código. 
 ---
 
 ## 📂 Estructura del Código
 ```
 ANALISIS-DE-HORAS-EXTRAS-A-PARTIR-DE-SISTEMAS-BIOMETRICOS-DE-CONTROL-DE-ASISTENCIA/
 │
-├── README.md             
-├── src/                  # Código fuente del proyecto
-│   ├── module1.py
-│   └── module2.py
-├── data/                 # Datos 
+├── README.md 
+├── analisis.ipybn            
+├── src/                
+│   ├── horas_extras.py
+│   ├── procesamiento.py
+│   ├── reporte.py
+│   └── README.md
+├── data/                  
+│   ├── feriados_2024.csv
+│   ├── miscelaneosmarzo2024.csv
+│   ├── miscelaneosabril2024.csv
+│   ├── miscelaneosmayo2024.csv
+│   └── miscelaneosjunio2024.csv
+├── output_data/                  
+│   ├── reporte_horas_extras_marzo2024.csv
+│   ├── reporte_horas_extras_abril2024.csv
+│   ├── reporte_horas_extras_mayo2024.csv
+│   └── reporte_horas_extras_junio2024.csv
 └── .gitignore
 ```
 
